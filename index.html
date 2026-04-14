@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>5 Anos e 11 Meses ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ══════════════════════════════════════════
+       VARIÁVEIS & RESET
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #fdf8f2;
+      --warm-white: #faf5ee;
+      --gold:       #744b05;
+      --gold-light: #e7a43e;
+      --brown:      #5c3d2e;
+      --text:       #000000;
+      --text-light: #000000;
+      --rose:       #861926;
+
+      --font-display: 'Pinyon Script', cursive;
+      --font-serif:   'Cormorant Garamond', serif;
+      --font-body:    'EB Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── Pétalas ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -30px;
+      background: var(--rose);
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg);      opacity: .55; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0;   }
+    }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background:
+        radial-gradient(ellipse at 30% 20%, #f5e6d3 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, #f0ddd0 0%, transparent 50%),
+        var(--cream);
+    }
+
+    .hero-ornament {
+      font-family: var(--font-serif);
+      color: var(--gold);
+      letter-spacing: .4em;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 10rem);
+      color: var(--brown);
+      line-height: 1;
+      animation: fadeUp .9s .1s ease both;
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      letter-spacing: .45em;
+      font-size: clamp(.75rem, 2vw, 1rem);
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: .5rem;
+      animation: fadeUp 1s .2s ease both;
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      animation: fadeUp 1s .3s ease both;
+    }
+    .hero-divider span { display: block; width: 60px; height: 1px; background: var(--gold-light); }
+    .hero-divider i    { color: var(--rose); font-style: normal; font-size: 1.1rem; }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: .9rem;
+      letter-spacing: .3em;
+      color: var(--text-light);
+      text-transform: uppercase;
+      animation: fadeUp 1s .4s ease both;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      font-family: var(--font-serif);
+      font-size: .8rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      animation: bob 2s ease-in-out infinite, fadeUp 1s .8s ease both;
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════════
+       LABELS & TÍTULOS
+    ══════════════════════════════════════════ */
+    .section-label {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: .2em;
+      font-size: .95rem;
+      text-align: center;
+      margin-bottom: .4rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--brown);
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ══════════════════════════════════════════
+       GALERIA
+    ══════════════════════════════════════════ */
+    #gallery {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 2rem 6rem;
+      background: var(--warm-white);
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+      aspect-ratio: 4 / 5;        /* ← todas as fotos mesma proporção */
+      box-shadow: 0 4px 20px rgba(92,61,46,.12);
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+    .photo-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 36px rgba(92,61,46,.22);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* ← preenche sem distorcer */
+      object-position: center;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .photo-card:hover img { transform: scale(1.06); }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: .9rem 1.2rem;
+      background: linear-gradient(transparent, rgba(58,42,30,.72));
+      color: #fff;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: .95rem;
+      letter-spacing: .05em;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .photo-card:hover .photo-caption { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════ */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(20,10,5,.92);
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 4px;
+      box-shadow: 0 0 60px rgba(0,0,0,.6);
+      object-fit: contain;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+    #lightbox-close:hover { opacity: 1; }
+
+    /* ══════════════════════════════════════════
+       CONTADOR
+    ══════════════════════════════════════════ */
+    #counter {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 2rem 6rem;
+      text-align: center;
+      background: var(--cream);
+    }
+    .counter-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .counter-item { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+    .counter-number {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 7rem);
+      color: var(--brown);
+      line-height: 1;
+    }
+    .counter-label {
+      font-family: var(--font-serif);
+      font-size: .85rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .counter-divider { font-size: 3rem; color: var(--gold-light); }
+
+    /* ══════════════════════════════════════════
+       CARTA
+    ══════════════════════════════════════════ */
+    #letter {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 2rem 8rem;
+      background:
+        radial-gradient(ellipse at 60% 10%, #f0e0cc 0%, transparent 55%),
+        var(--warm-white);
+    }
+    .letter-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      border: 1px solid var(--gold-light);
+      padding: 4rem 4rem 3.5rem;
+      background: rgba(253,248,242,.85);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 8px 40px rgba(92,61,46,.08);
+      position: relative;
+    }
+    .letter-wrapper::before,
+    .letter-wrapper::after {
+      content: '✦';
+      position: absolute;
+      color: var(--gold-light);
+      font-size: 1.2rem;
+    }
+    .letter-wrapper::before { top: 1rem;    left:  1.2rem; }
+    .letter-wrapper::after  { bottom: 1rem; right: 1.2rem; }
+
+    .letter-tag {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold);
+      font-size: .9rem;
+      letter-spacing: .2em;
+      margin-bottom: 1.2rem;
+    }
+    .letter-heading {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--brown);
+      margin-bottom: 1.8rem;
+      line-height: 1.2;
+    }
+    .letter-body p {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.85;
+    }
+    .letter-signature {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      color: var(--brown);
+      margin-top: 2rem;
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════════
+       RODAPÉ
+    ══════════════════════════════════════════ */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: var(--brown);
+    }
+    .footer-heart { display: block; color: var(--rose); font-size: 1.4rem; margin-bottom: .6rem; }
+    .footer-text {
+      font-family: var(--font-serif);
+      font-size: .85rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVO
+    ══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .letter-wrapper { padding: 2.5rem 1.8rem 2rem; }
+    }
+    @media (max-width: 380px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pétalas animadas -->
+  <div id="particles"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+    <img id="lightbox-img" src="" alt="Foto ampliada"/>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SEÇÃO 1 — HERO
+  ════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-ornament">— ✦ —</div>
+
+    <!-- ★ Nome dela -->
+    <h1 class="hero-title">VITORIA</h1>
+
+    <!-- ★ Nomes dos dois -->
+    <p class="hero-subtitle">GIOVANI &amp; VITORIA</p>
+
+    <div class="hero-divider">
+      <span></span>
+      <i>&#9829;</i>
+      <span></span>
+    </div>
+
+    <!-- ★ Data de início -->
+    <p class="hero-date">16 DE MAIO DE 2020 &nbsp;·&nbsp; 5 ANOS E 11 MESES</p>
+
+    <div class="scroll-hint"></div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SEÇÃO 2 — GALERIA
+  ════════════════════════════════════════ -->
+  <section id="gallery">
+    <p class="section-label reveal">Nossa história em imagens</p>
+    <h2 class="section-title reveal">Momentos</h2>
+
+    <div class="photo-grid">
+
+      <!-- ★ Troque os src pelas suas fotos (ex: img/foto1.jpg) -->
+      <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem7.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">O nosso começo ✦</span>
+      </div>
+
+      <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem2.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">Juntos sempre &#9829;</span>
+      </div>
+
+      <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem3.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">Momentos especiais</span>
+      </div>
+
+      <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem4.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">Nossa aventura</span>
+      </div>
+
+      <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem5.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">Para sempre ✦</span>
+      </div>
+
+         <div class="photo-card" onclick="openLightbox(this)">
+        <img src="img/imagem6.jpeg" alt="Nossa foto"/>
+        <span class="photo-caption">Para sempre ✦</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SEÇÃO 3 — CONTADOR
+  ════════════════════════════════════════ -->
+  <section id="counter">
+    <p class="section-label reveal">Cada segundo ao seu lado vale a eternidade</p>
+    <h2 class="section-title reveal">Tempo juntos</h2>
+
+    <div class="counter-grid">
+      <div class="counter-item reveal">
+        <span class="counter-number" id="c-anos">5</span>
+        <span class="counter-label">Anos</span>
+      </div>
+      <span class="counter-divider reveal">·</span>
+      <div class="counter-item reveal">
+        <span class="counter-number" id="c-meses">11</span>
+        <span class="counter-label">Meses</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SEÇÃO 4 — CARTA
+  ════════════════════════════════════════ -->
+  <section id="letter">
+    <div class="letter-wrapper reveal">
+
+      <p class="letter-tag">Uma carta para você</p>
+
+      <!-- ★ Cabeçalho da carta -->
+      <h3 class="letter-heading">Para o amor da minha vida,</h3>
+
+      <div class="letter-body">
+        <!-- ★ Escreva sua carta aqui — cada <p> é um parágrafo -->
+        <p>
+          Há quase seis anos, algo mudou dentro de mim — e esse algo tem o seu nome,
+          o seu sorriso, o jeito único que você tem de me olhar como se eu fosse o
+          único homem no mundo.
+        </p>
+        <p>
+          Nenhuma palavra é grande o suficiente para descrever o que eu sinto por você.
+          Mas sei que cada dia ao seu lado foi um presente que eu nunca mereci e que
+          jamais deixarei de agradecer.
+        </p>
+        <p>
+          Você é a minha paz nos dias caóticos, a minha alegria nas manhãs cinzas,
+          o lar que eu não sabia que estava procurando. Com você, aprendi que o amor
+          verdadeiro não é perfeito — ele é honesto, forte, e cresce a cada amanhecer.
+        </p>
+        <p>
+          Em 5 anos e 11 meses, vivemos o suficiente para uma vida inteira. E ainda
+          assim, mal consigo esperar por tudo que está por vir. Porque o melhor capítulo
+          dessa história ainda está por ser escrito — e quero escrevê-lo com você,
+          para sempre.
+        </p>
+        <p>
+          Te amo hoje, amanhã, e em todos os dias que ainda virão.
+        </p>
+      </div>
+
+      <!-- ★ Sua assinatura -->
+      <div class="letter-signature">Com todo o meu amor, GIOVANI</div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       RODAPÉ
+  ════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-heart">&#9829;</span>
+    <!-- ★ Nomes e data no rodapé -->
+    <p class="footer-text">GIOVANI &amp; VITORIA &nbsp;·&nbsp; </p>
+  </footer>
+
+  <script>
+    /* ── 1. Pétalas ── */
+    (function () {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 18; i++) {
+        const p    = document.createElement('div');
+        p.className = 'petal';
+        const size  = 8 + Math.random() * 10;
+        p.style.cssText = `
+          width:${size}px; height:${size*1.4}px;
+          left:${Math.random()*100}%;
+          animation-delay:${Math.random()*14}s;
+          animation-duration:${10+Math.random()*12}s;
+        `;
+        container.appendChild(p);
+      }
+    })();
+
+    /* ── 2. Reveal ao  ── */
+    (function () {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 100);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    })();
+
+    /* ── 3. Contador (atualiza automaticamente) ── */
+    (function () {
+      // ★ ALTERE a data de início aqui
+      const START = new Date('2020-05-16T00:00:00');
+      const now   = new Date();
+      let anos  = now.getFullYear() - START.getFullYear();
+      let meses = now.getMonth()    - START.getMonth();
+      if (meses < 0) { anos--; meses += 12; }
+      document.getElementById('c-anos').textContent  = anos;
+      document.getElementById('c-meses').textContent = meses;
+    })();
+
+    /* ── 4. Lightbox ── */
+    function openLightbox(card) {
+      document.getElementById('lightbox-img').src = card.querySelector('img').src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
